@@ -340,7 +340,7 @@ public class World {
                 }
             }
         }
-        arg1.buildModels(-10, (byte) 3, 64, -50, 768, -50);
+        arg1.buildModels(-10, -50, -50);
         for (var6 = 0; var6 < this.maxTileX; var6++) {
             for (var7 = 0; var7 < this.maxTileZ; var7++) {
                 if ((this.levelTileFlags[1][var6][var7] & 2) == 2) {

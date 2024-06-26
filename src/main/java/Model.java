@@ -112,6 +112,16 @@ public class Model extends Entity {
     @OriginalMember(owner = "client!ZKARKDQW", name = "V", descriptor = "I")
     public int minZ;
 
+    // from 377:
+    @OriginalMember(owner = "client!LZYQDKJV", name = "S", descriptor = "I")
+    public int field1215;
+
+    @OriginalMember(owner = "client!LZYQDKJV", name = "T", descriptor = "I")
+    public int field1216;
+
+    @OriginalMember(owner = "client!LZYQDKJV", name = "U", descriptor = "I")
+    public int field1217;
+
     @OriginalMember(owner = "client!ZKARKDQW", name = "W", descriptor = "I")
     public int radius;
 
@@ -921,6 +931,9 @@ public class Model extends Entity {
             this.maxZ = arg3.maxZ;
             this.minZ = arg3.minZ;
             this.maxX = arg3.maxX;
+            this.field1216 = arg3.field1216;
+            this.field1217 = arg3.field1217;
+            this.field1215 = arg3.field1215;
         } else {
             throw new NullPointerException();
         }
@@ -1061,10 +1074,10 @@ public class Model extends Entity {
         super.minY = 0;
         this.radius = 0;
         this.maxY = 0;
-        this.minX = 999999;
-        this.maxX = -999999;
-        this.maxZ = -99999;
-        this.minZ = 99999;
+        this.minX = 32767;
+        this.maxX = -32767;
+        this.maxZ = -32767;
+        this.minZ = 32767;
         for (int var2 = 0; var2 < this.vertexCount; var2++) {
             int var3 = this.vertexX[var2];
             int var4 = this.vertexY[var2];
@@ -1097,6 +1110,8 @@ public class Model extends Entity {
         if (arg0 == 21073) {
             this.maxDepth = this.minDepth + (int) Math.sqrt((double) (this.radius * this.radius + this.maxY * this.maxY));
         }
+        this.field1216 = (this.minX << 16) + (this.maxX & 65535);
+        this.field1217 = (this.maxZ << 16) + (this.minZ & 65535);
     }
 
     @OriginalMember(owner = "client!ZKARKDQW", name = "a", descriptor = "(B)V")
@@ -1513,12 +1528,20 @@ public class Model extends Entity {
                 var25.z = var24.z;
                 var25.w = var24.w;
             }
+            this.field1215 = (arg0 << 16) + (var8 & 65535);
         }
         if (arg5) {
             this.calculateBoundsCylinder(false);
         } else {
             this.calculateBoundsAABB(21073);
         }
+    }
+
+    @OriginalMember(owner = "client!LZYQDKJV", name = "b", descriptor = "(IIII)V")
+    public final void applyLighting(int arg0, int arg1, int arg2, int arg3) {
+        int var5 = this.field1215 >> 16;
+        int var6 = this.field1215 << 16 >> 16;
+        this.applyLighting(var5, var6, arg3, arg0, arg1);
     }
 
     @OriginalMember(owner = "client!ZKARKDQW", name = "a", descriptor = "(IIIII)V")

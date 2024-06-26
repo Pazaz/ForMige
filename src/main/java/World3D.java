@@ -814,12 +814,7 @@ public class World3D {
     }
 
     @OriginalMember(owner = "client!NYFUGYQS", name = "a", descriptor = "(IBIIII)V")
-    public void buildModels(int arg0, byte arg1, int arg2, int arg3, int arg4, int arg5) {
-        int var7 = (int) Math.sqrt((double) (arg3 * arg3 + arg0 * arg0 + arg5 * arg5));
-        int var8 = arg4 * var7 >> 8;
-        if (arg1 != 3) {
-            this._flowObfuscator6 = !this._flowObfuscator6;
-        }
+    public void buildModels(int arg1, int arg2, int arg3) {
         for (int var9 = 0; var9 < this.maxLevel; var9++) {
             for (int var10 = 0; var10 < this.maxTileX; var10++) {
                 for (int var11 = 0; var11 < this.maxTileZ; var11++) {
@@ -831,21 +826,21 @@ public class World3D {
                             if (var13.modelB != null && var13.modelB.vertexNormal != null) {
                                 this.mergeLocNormals(var9, 1, 1, var10, (byte) 115, var11, (Model) var13.modelB);
                                 this.mergeNormals((Model) var13.modelA, (Model) var13.modelB, 0, 0, 0, false);
-                                ((Model) var13.modelB).applyLighting(arg2, var8, arg3, arg0, arg5);
+                                ((Model) var13.modelB).applyLighting(arg1, arg2, 0, arg3); // passing 10, -50, -50
                             }
-                            ((Model) var13.modelA).applyLighting(arg2, var8, arg3, arg0, arg5);
+                            ((Model) var13.modelA).applyLighting(arg1, arg2, 0, arg3);
                         }
                         for (int var14 = 0; var14 < var12.locCount; var14++) {
                             Loc var15 = var12.locs[var14];
                             if (var15 != null && var15.model != null && var15.model.vertexNormal != null) {
                                 this.mergeLocNormals(var9, var15.maxSceneTileX - var15.minSceneTileX + 1, var15.maxSceneTileZ - var15.minSceneTileZ + 1, var10, (byte) 115, var11, (Model) var15.model);
-                                ((Model) var15.model).applyLighting(arg2, var8, arg3, arg0, arg5);
+                                ((Model) var15.model).applyLighting(arg1, arg2, 0, arg3);
                             }
                         }
                         GroundDecoration var16 = var12.groundDecoration;
                         if (var16 != null && var16.model.vertexNormal != null) {
                             this.mergeGroundDecorationNormals(var10, var9, (Model) var16.model, (byte) 37, var11);
-                            ((Model) var16.model).applyLighting(arg2, var8, arg3, arg0, arg5);
+                            ((Model) var16.model).applyLighting(arg1, arg2, 0, arg3);
                         }
                     }
                 }

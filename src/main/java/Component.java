@@ -409,6 +409,9 @@ public class Component {
                         }
                     }
                 }
+                if (var8.type == 8) {
+                    var4.gjstr();
+                }
                 if (var8.buttonType == 2 || var8.type == 2) {
                     var8.targetVerb = var4.gjstr();
                     var8.targetText = var4.gjstr();
